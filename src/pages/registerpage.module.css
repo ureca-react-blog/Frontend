@@ -1,0 +1,33 @@
+.container {
+  width: 60%;
+  margin: auto;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.container input {
+  padding: 1em;
+  border-radius: 0.25em;
+  outline: none;
+  border: 1px solid gray;
+}
+
+.container input:focus {
+  background-color: rgb(230, 249, 255);
+}
+
+.container strong {
+  color: red;
+  font-weight: normal;
+  font-size: 0.75em;
+  padding: 1em;
+}
+
+.container button {
+  padding: 1em;
+  background-color: rgb(236, 130, 196);
+  border-radius: 0.5em;
+  align-self: center; /* 버튼만 중앙 정렬 */
+}
