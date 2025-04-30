@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import css from './registerpage.module.css'
+import axios from 'axios'
 
 export const Registerpage = () => {
-  const [userName, setUserName] = useState('')
+  const [username, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [passwordCheck, setPasswordCheck] = useState('')
   const [errorUserName, setErroruserName] = useState('')
@@ -66,10 +67,10 @@ export const Registerpage = () => {
     validatePasswordCheck(value)
   }
 
-  const register = e => {
+  const register = async e => {
     e.preventDefault()
-    console.log(userName, password, passwordCheck)
-    validateUserName(userName) // 제출 전 한번 더 유효성 검사
+    console.log(username, password, passwordCheck)
+    validateUserName(username) // 제출 전 한번 더 유효성 검사
     validatePassword(password)
     validatePasswordCheck(passwordCheck)
 
@@ -78,7 +79,7 @@ export const Registerpage = () => {
       errorUserName ||
       errorPassword ||
       errorPasswordCheck ||
-      !userName ||
+      !username ||
       !password ||
       !passwordCheck
     )
@@ -86,15 +87,27 @@ export const Registerpage = () => {
 
     try {
       setRegisterState('등록중')
-      // 회원가입 API 호출
+      // 회원가입 API 호출 (DB에 사용자명과 비밀번호 저장)
+      const response = await axios.post('http://localhost:3000/register', {
+        username,
+        password,
+      })
+
+      console.log('회원가입 성공', response)
+
+      setUserName('')
+      setPassword('')
+      setPasswordCheck('')
+
       setRegisterState('등록 완료')
     } catch (error) {
-      console.log('회원가입 실패', error)
+      if (error.response) {
+        console.log('회원가입 실패', error)
+        alert(error.response.data.message)
+      } else {
+        console.log('요청 실패', error.message)
+      }
     }
-
-    setUserName('')
-    setPassword('')
-    setPasswordCheck('')
   }
 
   return (
@@ -104,7 +117,7 @@ export const Registerpage = () => {
         <input
           type="text"
           placeholder="이름을 입력해주세요"
-          value={userName}
+          value={username}
           onChange={handleUserNameChange}
         ></input>
         <strong>{errorUserName}</strong>
