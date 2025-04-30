@@ -16,7 +16,9 @@ export const Registerpage = () => {
       return
     }
     if (!/^[a-zA-Z][a-zA-Z0-9]{3,}$/.test(value)) {
-      setErroruserName('사용자명은 4자 이상이어야 하며 영어로 시작해야 합니다.')
+      setErroruserName(
+        '사용자명은 4자 이상이어야 하며 영어로 시작해야 합니다. 공백은 입력할 수 없습니다'
+      )
     } else {
       setErroruserName('')
     }
@@ -24,7 +26,7 @@ export const Registerpage = () => {
 
   const validatePassword = value => {
     if (!value.trim()) {
-      setErroruserName('패스워드를 입력해주세요')
+      setErrorPassword('패스워드를 입력해주세요')
       return
     }
     if (value.length < 4) {
