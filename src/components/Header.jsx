@@ -8,7 +8,7 @@ export const Header = () => {
         <Link to="/">SEHADANGLOG</Link>
       </h1>
       <nav>
-        <NavLink to="/">회원가입</NavLink>
+        <NavLink to="/register">회원가입</NavLink>
       </nav>
     </header>
   )
