@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { toast } from 'react-toastify'
+import { Bounce } from 'react-toastify'
 import css from './registerpage.module.css'
 import axios from 'axios'
 
@@ -93,7 +95,19 @@ export const Registerpage = () => {
         password,
       })
 
-      console.log('회원가입 성공', response)
+      console.log('응답 상태 코드:', response.status)
+      console.log('응답 내용:', response.data)
+
+      toast.success('👏 회원가입 성공!', {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Bounce,
+      })
 
       setUserName('')
       setPassword('')
@@ -101,11 +115,13 @@ export const Registerpage = () => {
 
       setRegisterState('등록 완료')
     } catch (error) {
+      console.error('응답 전체:', error)
       if (error.response) {
-        console.log('회원가입 실패', error)
-        alert(error.response.data.message)
+        console.error('응답 상태:', error.response.status)
+        console.error('응답 데이터:', error.response.data)
+        toast.error(`${error.response.data.message || '회원가입 실패'}`)
       } else {
-        console.log('요청 실패', error.message)
+        toast.error('서버에 연결할 수 없습니다')
       }
     }
   }
