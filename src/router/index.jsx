@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { DefaultLayout } from '../common/DefaultLayout'
 import { Registerpage } from '../pages/Registerpage'
+import { LoginPage } from '../pages/LoginPage'
 
 export const router = createBrowserRouter([
   {
@@ -10,6 +11,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <div>메인페이지</div> },
       { path: '/register', element: <Registerpage /> },
+      { path: '/login', element: <LoginPage /> },
     ],
   },
 ])
