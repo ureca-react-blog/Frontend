@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { Bounce } from 'react-toastify'
 import css from './registerpage.module.css'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { registerUser } from '../apis/userApi'
 
 export const Registerpage = () => {
   const [username, setUserName] = useState('')
@@ -92,7 +92,7 @@ export const Registerpage = () => {
     try {
       setRegisterState('등록중')
       // 회원가입 API 호출 (DB에 사용자명과 비밀번호 저장)
-      const response = await axios.post('http://localhost:3000/register', {
+      const response = await registerUser({
         username,
         password,
       })
