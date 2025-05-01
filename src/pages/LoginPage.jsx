@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { Bounce } from 'react-toastify'
-import axios from 'axios'
 import css from './registerpage.module.css'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setUserInfo } from '../store/userSlice'
+import { loginUser } from '../apis/userApi'
 
 export const LoginPage = () => {
   const dispatch = useDispatch()
@@ -67,27 +67,28 @@ export const LoginPage = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/login', { username, password })
+      const userData = await loginUser({ username, password })
 
-      console.log(response)
+      console.log(userData)
 
-      toast.success('다시 오신 것을 환영합니다!🤗 ', {
-        position: 'top-center',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-        transition: Bounce,
-      })
-
-      if (response.status == 200) {
+      if (userData) {
         setLoginStatus('로그인 성공')
-        dispatch(setUserInfo(response.data)) // 스토어에 로그인 정보 저장
+        toast.success('다시 오신 것을 환영합니다!🤗 ', {
+          position: 'top-center',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+          transition: Bounce,
+        })
+        dispatch(setUserInfo(userData)) // 스토어에 로그인 정보 저장
         setTimeout(() => {
           setRedirect(true)
         }, 1000)
+      } else {
+        console.log('------')
       }
     } catch (error) {
       console.error('응답 전체:', error)
@@ -97,15 +98,17 @@ export const LoginPage = () => {
       } else {
         console.error('서버에 연결할 수 없습니다')
         toast.error('서버에 연결할 수 없습니다')
+        return
       }
     } finally {
       setLoginStatus(false)
     }
   }
-
-  if (redirect) {
-    navigate('/')
-  }
+  useEffect(() => {
+    if (redirect) {
+      navigate('/')
+    }
+  }, [redirect, navigate])
 
   return (
     <main className={css.loginpage}>
