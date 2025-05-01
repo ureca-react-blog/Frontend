@@ -5,3 +5,8 @@
   background-color: #eaeaea;
   padding: 1rem;
 }
+
+.header nav {
+  display: flex;
+  gap: 1em;
+}
