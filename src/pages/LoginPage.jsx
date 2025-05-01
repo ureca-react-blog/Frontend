@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { Bounce } from 'react-toastify'
 import css from './registerpage.module.css'
+import logincss from './loginpage.module.css'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setUserInfo } from '../store/userSlice'
@@ -115,19 +116,28 @@ export const LoginPage = () => {
       <h2 className={css.title}>로그인</h2>
       {loginStatus && <strong>로그인 성공</strong>}
       <form className={css.container} onSubmit={login}>
-        <input
-          type="text"
-          placeholder="사용자명을 입력해주세요"
-          value={username}
-          onChange={handleUserNameChange}
-        />
+        <fieldset className={logincss.fieldGroup}>
+          <input
+            type="text"
+            placeholder=" "
+            value={username}
+            onChange={handleUserNameChange}
+            required
+            id="username"
+          />
+          <legend htmlFor="username">사용자명</legend>
+        </fieldset>
         <strong>{errorUserName}</strong>
-        <input
-          type="password"
-          placeholder="패스워드를 입력해주세요"
-          value={password}
-          onChange={handlePasswordChange}
-        />
+        <fieldset className={logincss.fieldGroup}>
+          <input
+            type="password"
+            placeholder=""
+            value={password}
+            onChange={handlePasswordChange}
+            id="password"
+          />
+          <legend htmlFor="password">비밀번호</legend>
+        </fieldset>
         <strong>{errorPassword}</strong>
         <button type="submit">로그인</button>
       </form>
