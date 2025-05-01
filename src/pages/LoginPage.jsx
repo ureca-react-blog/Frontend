@@ -21,24 +21,29 @@ export const LoginPage = () => {
   const validateUserName = value => {
     if (!value.trim()) {
       setErroruserName('사용자명을 입력해주세요')
-      return
+      return false
     }
+
     if (!/^[a-zA-Z][a-zA-Z0-9]{3,}$/.test(value)) {
       setErroruserName('사용자명은 영문 4자 이상이어야 합니다. 공백은 입력할 수 없습니다')
+      return false
     } else {
       setErroruserName('')
+      return true
     }
   }
 
   const validatePassword = value => {
     if (!value.trim()) {
       setErrorPassword('패스워드를 입력해주세요')
-      return
+      return false
     }
     if (value.length < 4) {
       setErrorPassword('패스워드는 4자 이상이어야 합니다.')
+      return false
     } else {
       setErrorPassword('')
+      return true
     }
   }
 
@@ -57,6 +62,7 @@ export const LoginPage = () => {
   const login = async e => {
     e.preventDefault() // form의 기본적인 특징인 새로고침 방지
     setLoginStatus('')
+
     validateUserName(username)
     validatePassword(password)
 
