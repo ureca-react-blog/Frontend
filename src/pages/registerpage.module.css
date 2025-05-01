@@ -5,7 +5,7 @@
 }
 
 .container {
-  width: 60%;
+  width: 40%;
   margin: auto;
   border: 1px solid red;
   display: flex;
@@ -33,9 +33,10 @@
 }
 
 .container button {
+  width: 100%;
   padding: 1em;
   background-color: rgb(11, 127, 46);
   color: white;
-  border-radius: 0.5em;
+  border-radius: 0.25em;
   align-self: center; /* 버튼만 중앙 정렬 */
 }
