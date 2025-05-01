@@ -128,11 +128,11 @@ export const Registerpage = () => {
 
   return (
     <main className={css.registerpage}>
-      <h2>회원가입 페이지</h2>
+      <h2 className={css.title}>회원가입</h2>
       <form className={css.container} onSubmit={register}>
         <input
           type="text"
-          placeholder="이름을 입력해주세요"
+          placeholder="닉네임을 입력해주세요"
           value={username}
           onChange={handleUserNameChange}
         ></input>
