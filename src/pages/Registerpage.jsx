@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 import { Bounce } from 'react-toastify'
 import css from './registerpage.module.css'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export const Registerpage = () => {
   const [username, setUserName] = useState('')
@@ -12,6 +13,7 @@ export const Registerpage = () => {
   const [errorPassword, setErrorPassword] = useState('')
   const [errorPasswordCheck, setErrorPasswordCheck] = useState('')
   const [registerState, setRegisterState] = useState('')
+  const navigate = useNavigate()
 
   const validateUserName = value => {
     if (!value.trim()) {
@@ -114,6 +116,7 @@ export const Registerpage = () => {
       setPasswordCheck('')
 
       setRegisterState('등록 완료')
+      navigate('/login')
     } catch (error) {
       console.error('응답 전체:', error)
       if (error.response) {
