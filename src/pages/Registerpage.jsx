@@ -132,6 +132,7 @@ export const Registerpage = () => {
   return (
     <main className={css.registerpage}>
       <h2 className={css.title}>회원가입</h2>
+      {registerState && <strong>{registerState}</strong>}
       <form className={css.container} onSubmit={register}>
         <input
           type="text"
