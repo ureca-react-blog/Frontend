@@ -4,8 +4,11 @@ import { Bounce } from 'react-toastify'
 import axios from 'axios'
 import css from './registerpage.module.css'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setUserInfo } from '../store/userSlice'
 
 export const LoginPage = () => {
+  const dispatch = useDispatch()
   const [username, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [errorUserName, setErroruserName] = useState('')
@@ -81,7 +84,7 @@ export const LoginPage = () => {
 
       if (response.status == 200) {
         setLoginStatus('로그인 성공')
-        // 리덕스 사용 시 dispatch(setUserInfo(response.data)
+        dispatch(setUserInfo(response.data)) // 스토어에 로그인 정보 저장
         setTimeout(() => {
           setRedirect(true)
         }, 1000)
