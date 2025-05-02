@@ -89,8 +89,7 @@ export const CreatePost = () => {
           id="file"
           name="file"
           accept="image/*"
-          value={files}
-          onChange={e => setFiles(e.target.value)}
+          onChange={e => setFiles(e.target.files)} // input 타입이 파일이면 이벤트 타겟에 files로 접근해야 한다.
         />
         <label htmlFor="content">내용</label>
         <div className={css.editorWrapper}>
