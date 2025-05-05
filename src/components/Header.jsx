@@ -1,4 +1,4 @@
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useNavigate } from 'react-router-dom'
 import css from './header.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -8,6 +8,7 @@ import { logoutUser } from '../apis/userApi'
 
 export const Header = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const user = useSelector(state => state.user.user)
   const username = user?.username
   console.log(username)
@@ -30,6 +31,7 @@ export const Header = () => {
     try {
       await logoutUser()
       dispatch(setUserInfo(''))
+      navigate('/')
     } catch (error) {
       console.log(error)
     }
