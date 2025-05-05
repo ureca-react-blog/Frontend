@@ -3,6 +3,7 @@ import { DefaultLayout } from '../common/DefaultLayout'
 import { Registerpage } from '../pages/Registerpage'
 import { LoginPage } from '../pages/LoginPage'
 import { CreatePost } from '../pages/CreatePost'
+import { PostListPage } from '../pages/PostListPage'
 
 export const router = createBrowserRouter([
   {
@@ -10,7 +11,7 @@ export const router = createBrowserRouter([
     element: <DefaultLayout />,
     errorElement: <div>에러</div>,
     children: [
-      { index: true, element: <div>메인페이지</div> },
+      { index: true, element: <PostListPage /> },
       { path: '/register', element: <Registerpage /> },
       { path: '/login', element: <LoginPage /> },
       { path: '/create', element: <CreatePost /> },
