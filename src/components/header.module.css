@@ -2,11 +2,28 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #eaeaea;
+  background-color: #13602f;
   padding: 1rem;
+  color: white;
+}
+
+.header h1 {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .header nav {
   display: flex;
   gap: 1em;
+}
+
+.header a,
+.header span,
+.header button {
+  display: inline-block;
+  padding: 0.25em, 1em;
+  color: white;
+}
+
+.header button {
+  font-size: 16px;
 }

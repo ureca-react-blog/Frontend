@@ -19,3 +19,9 @@ button {
   border: none;
   background-color: transparent;
 }
+
+h2 {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0.5rem;
+}
