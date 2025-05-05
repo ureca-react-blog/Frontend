@@ -21,3 +21,9 @@ export const getPostList = async () => {
   const response = await axios.get(`${API_URL}/postList`)
   return response.data
 }
+
+// 게시글 요청
+export const getPostDetail = async postId => {
+  const response = await axios.get(`${API_URL}/postDetail/${postId}`)
+  return response.data
+}
